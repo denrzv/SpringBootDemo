@@ -1,0 +1,38 @@
+### Successful test: check response status is 200
+GET http://localhost:8080/profile
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+### Successful test: check response status is 200 for generic URL
+GET http://localhost:8080/
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+### Successful test: check response status is 200 for health
+GET http://localhost:8080/actuator/health
+Accept: application/json
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+
+### Successful test: check response status is 200 for shutdown
+POST http://localhost:8080/actuator/shutdown
+Accept: application/json
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
